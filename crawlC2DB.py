@@ -35,7 +35,7 @@ def main():
 
         c2db_data.writeJsonFile(c2db_datajson)
         count += 1
-        print(f"\r\t Finished:  {count} |    Invalid:   {invalid} |   Total:  4065", end='')
+        print(f"\r\t Finished:  {count} |    Invalid:   {invalid} |   Total:  4056", end='')
         # print(row.uid)
 
     print("Invalid uid list: ", invalid_list)
