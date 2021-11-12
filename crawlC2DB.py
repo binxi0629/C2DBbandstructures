@@ -1,5 +1,6 @@
 import ase.db
 from c2dbjson import C2DBjson
+from tqdm import tqdm
 
 def main():
 
@@ -13,9 +14,9 @@ def main():
     invalid = 0
     invalid_list = []
 
-    print("Loading...")
-    for row in rows:
-        # print(row)
+    num_rows = len(rows)
+    for i in tqdm(range(num_rows)):
+        row = rows[i]
         c2db_datajson = {}
         # create c2db class
         c2db_data = C2DBjson(uid=row.uid, save_path='c2db_database/')
@@ -35,11 +36,13 @@ def main():
 
         c2db_data.writeJsonFile(c2db_datajson)
         count += 1
-        print(f"\r\t Finished:  {count} |    Invalid:   {invalid} |   Total:  4056", end='')
+        
         # print(row.uid)
-
+        
+    print(f"\t Finished:  {count} |    Invalid:   {invalid} |   Total:  {num_rows}")
     print("Invalid uid list: ", invalid_list)
-
+    
 
 if __name__ == '__main__':
+    print("Loading...")
     main()
